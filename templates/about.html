@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3> About the Site</h3>
+
+<p>Hi, I am a recent McGill University graduate and am currently doing my Master's degree in Mechanical Engineering at University of Michigan.</p>
+<p>This site has two simple engineering apps I made using python flask:</p>
+<p>1. The Composite Mat Calculator is an input & output program to enable design based on computing laminate stiffness and compliance matrix, and perform failure analysis for Composite Laminates and honeycomb structures.
+The work is based on the course project I completed in MECH 530 Mechanics of Composite Materials in Fall 2019.</p>
+<p>2. The ADI heat calculator solves the 2D diffusion of Heat equation over a squared plate with Dirichlet Boundary Conditions using the Alternating-Direction Implicit (ADI) Scheme.</p>
+<br>
+<p>You can access my resume <a href="https://github.com/jasonzhou1997/resume/blob/main/Zhou_Xinchen%20Resume.pdf">here.</a></p>
+    <image src="{{ url_for('static', filename='images/composite_lam.png')}}"ALIGN=”left”/>
+                  <image src="{{ url_for('static', filename='images/ADI_demo.png')}} "width = "800" height = "500"/>
+
+{% endblock %}
