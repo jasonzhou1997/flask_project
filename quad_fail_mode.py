@@ -50,9 +50,12 @@ def quad_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On
             Neg_R_top[i] = r_top[0]
 
     Minimum_R_Quad_bot = np.amin(Pos_R_bot)
-    Index_Min_R_Quad_bot = np.where(Minimum_R_Quad_bot == np.amin(Minimum_R_Quad_bot))
+    Index_Min_R_Quad_bot = np.where(Pos_R_bot == np.amin(Pos_R_bot))[0]
     Minimum_R_Quad_top = np.amin(Pos_R_top)
-    Index_Min_R_Quad_top = np.where(Minimum_R_Quad_top == np.amin(Minimum_R_Quad_top))
+    Index_Min_R_Quad_top = np.where(Pos_R_top == np.amin(Pos_R_top))[0]
+
+    print('Minimum_R_Quad_bot = ', Minimum_R_Quad_bot)
+    print('Minimum_R_Quad_top = ', Minimum_R_Quad_top)
 
     if Minimum_R_Quad_bot < Minimum_R_Quad_top:
         R_Quad = Minimum_R_Quad_bot
@@ -78,4 +81,5 @@ def quad_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On
                                                                      'Minus_Bot',
                                                                      'Plus_top',
                                                                      'Minus_top', ])
-    return Quad_Fail_Arr
+    Quad_Fail_list = [str_Quad,Quad_Failure_Lay+1, R_Quad,Minimum_R_N_Quad,Minimum_R_M_Quad]
+    return Quad_Fail_Arr, Quad_Fail_list

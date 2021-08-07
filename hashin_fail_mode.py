@@ -70,65 +70,66 @@ def hashin_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, 
 
         Hashin_Arr_R = np.array([R_FT_top_min, R_MT_top_min])
         Min_R_Hashin = np.amin(Hashin_Arr_R)
-        Index_min_R_Hashin = np.where(Hashin_Arr_R == np.amin(Hashin_Arr_R))
-        if Index_min_R_Hashin == 0:
+        Index_min_R_Hashin = np.where(Hashin_Arr_R == np.amin(Hashin_Arr_R))[0]
+        if Index_min_R_Hashin[0] == 0:
             Hashin_str = 'Failure Mode is Fiber Tension occurs on Top layer of ply'
-        elif Index_min_R_Hashin == 1:
+        elif Index_min_R_Hashin[0] == 1:
             Hashin_str = 'Failure Mode is Matrix Tension occurs on Top layer of ply '
         Failure_Lay_Hashin = Ply_Num
     else:
         H_FT_bot_lowest = np.min(H_FT_bot[np.nonzero(H_FT_bot)])
-        H_index_FT_bot = np.where(H_FT_bot == H_FT_bot_lowest)
+        H_index_FT_bot = np.where(H_FT_bot == H_FT_bot_lowest)[0]
         H_FT_top_lowest = np.min(H_FT_top[np.nonzero(H_FT_top)])
-        H_index_FT_top = np.where(H_FT_top == H_FT_top_lowest)
+        H_index_FT_top = np.where(H_FT_top == H_FT_top_lowest)[0]
 
         H_FC_bot_lowest = np.min(H_FC_bot[np.nonzero(H_FC_bot)])
-        H_index_FC_bot = np.where(H_FC_bot == H_FC_bot_lowest)
+        H_index_FC_bot = np.where(H_FC_bot == H_FC_bot_lowest)[0]
         H_FC_top_lowest = np.min(H_FC_top[np.nonzero(H_FC_top)])
-        H_index_FC_top = np.where(H_FC_top == H_FC_top_lowest)
+        H_index_FC_top = np.where(H_FC_top == H_FC_top_lowest)[0]
 
         H_MT_bot_lowest = np.min(H_MT_bot[np.nonzero(H_MT_bot)])
-        H_index_MT_bot = np.where(H_MT_bot == H_MT_bot_lowest)
+        H_index_MT_bot = np.where(H_MT_bot == H_MT_bot_lowest)[0]
         H_MT_top_lowest = np.min(H_MT_top[np.nonzero(H_MT_top)])
-        H_index_MT_top = np.where(H_MT_top == H_MT_top_lowest)
+        H_index_MT_top = np.where(H_MT_top == H_MT_top_lowest)[0]
 
         H_MC_bot_lowest = np.min(H_MC_bot[np.nonzero(H_MC_bot)])
-        H_index_MC_bot = np.where(H_MC_bot == H_MC_bot_lowest)
+        H_index_MC_bot = np.where(H_MC_bot == H_MC_bot_lowest)[0]
         H_MC_top_lowest = np.min(H_MC_top[np.nonzero(H_MC_top)])
-        H_index_MC_top = np.where(H_MC_top == H_MC_top_lowest)
+        H_index_MC_top = np.where(H_MC_top == H_MC_top_lowest)[0]
 
         H_R_lowest_Arr = np.array(
             [H_FT_bot_lowest, H_FT_top_lowest, H_FC_bot_lowest, H_FC_top_lowest, H_MT_bot_lowest, H_MT_top_lowest,
              H_MC_bot_lowest, H_MC_top_lowest])
         H_Minimum_R = np.amin(H_R_lowest_Arr)
-        H_Index_Min_R = np.where(H_R_lowest_Arr == np.amin(H_R_lowest_Arr))
+        H_Index_Min_R = np.where(H_R_lowest_Arr == np.amin(H_R_lowest_Arr))[0]
 
-        if H_Index_Min_R == 0:
+        if H_Index_Min_R[0] == 0:
             Hashin_str = "Failure Mode is Fiber Tension occurs on Bottom layer of ply"
-            Failure_Lay_Hashin = H_index_FT_bot
-        elif H_Index_Min_R == 1:
+            Failure_Lay_Hashin = H_index_FT_bot[0]
+        elif H_Index_Min_R[0] == 1:
             Hashin_str = "Failure Mode is Fiber Tension occurs on Top layer of ply"
-            Failure_Lay_Hashin == H_index_FT_top
-        elif H_Index_Min_R == 2:
+            Failure_Lay_Hashin = H_index_FT_top[0]
+        elif H_Index_Min_R[0] == 2:
             Hashin_str = "Failure Mode is Fiber Compression occurs on Bottom layer of ply"
-            Failure_Lay_Hashin == H_index_FC_bot
-        elif H_Index_Min_R == 3:
+            Failure_Lay_Hashin = H_index_FC_bot[0]
+        elif H_Index_Min_R[0] == 3:
             Hashin_str = "Failure Mode is Fiber Compression occurs on Top layer of ply"
-            Failure_Lay_Hashin == H_index_FC_top
-        elif H_Index_Min_R == 4:
+            Failure_Lay_Hashin = H_index_FC_top[0]
+        elif H_Index_Min_R[0] == 4:
             Hashin_str = "Failure Mode is Matrix Tension occurs on Bottom layer of ply"
-            Failure_Lay_Hashin = H_index_MT_bot
-        elif H_Index_Min_R == 5:
+            Failure_Lay_Hashin = H_index_MT_bot[0]
+        elif H_Index_Min_R[0] == 5:
             Hashin_str = "Failure Mode is Matrix Tension occurs on Top layer of ply"
-            Failure_Lay_Hashin == H_index_MT_top
-        elif H_Index_Min_R == 6:
+            Failure_Lay_Hashin = H_index_MT_top[0]
+        elif H_Index_Min_R[0] == 6:
             Hashin_str = "Failure Mode is Matrix Compression occurs on Bottom layer of ply"
-            Failure_Lay_Hashin == H_index_MC_bot
-        elif H_Index_Min_R == 7:
+            Failure_Lay_Hashin = H_index_MC_bot[0]
+        elif H_Index_Min_R[0] == 7:
             Hashin_str = "Failure Mode is Matrix Compression occurs on Top layer of ply"
-            Failure_Lay_Hashin == H_index_MC_top
+            Failure_Lay_Hashin = H_index_MC_top[0]
 
     Layer_Arr = np.arange(1, Ply_Num + 1)
+
     H_Max_Fail_Arr = np.array(
         [Layer_Arr, H_FT_bot, H_FC_bot, H_MT_bot, H_MC_bot, H_FT_top, H_FC_top, H_MT_top, H_MC_top])
     Minimum_R_N_Hash= np.multiply(Stress_Res_Arr, H_Minimum_R)
@@ -143,4 +144,5 @@ def hashin_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, 
                                                                        'FC_Top',
                                                                        'MT_Top',
                                                                        'MC_Top'])
-    return H_Max_Fail_Arr
+    Hashin_Fail_list = [Hashin_str, Failure_Lay_Hashin+1, H_Minimum_R , Minimum_R_N_Hash, Minimum_R_M_Hash]
+    return H_Max_Fail_Arr,Hashin_Fail_list

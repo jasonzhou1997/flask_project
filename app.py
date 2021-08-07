@@ -7,11 +7,14 @@ import matplotlib
 from matplotlib import cm
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from Failure_function import failure_criteria
+
 from Two_d_ADI_Heat import ADI_Heat
+from max_fail_mode import max_failure
+from quad_fail_mode import quad_failure
+from hashin_fail_mode import hashin_failure
 from flask import Flask, render_template, request
 import base64
-#from matplotlib.figure import Figure
+
 from io import BytesIO
 
 app = Flask(__name__)
@@ -553,12 +556,16 @@ def send():
         On_Axis_Stress_top_Matrix = np.reshape(On_Axis_Stress_top_Matrix, (Ply_Num, 3))
         #print(" On_Axis_Stress_bot_Matrix:", On_Axis_Stress_bot_Matrix)
         #print(" On_Axis_Stress_top_Matrix:", On_Axis_Stress_top_Matrix)
-        Table_1, Table_2,Table_3 = failure_criteria(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_Axis_Stress_top_Matrix,Stress_Res_Arr,Mom_Res_Arr)
+        Table_1,max_list= max_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_Axis_Stress_top_Matrix,Stress_Res_Arr,Mom_Res_Arr)
+        Table_2,quad_list = quad_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_Axis_Stress_top_Matrix,
+                                Stress_Res_Arr, Mom_Res_Arr)
+        Table_3,hashin_list = hashin_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_Axis_Stress_top_Matrix,
+                                Stress_Res_Arr, Mom_Res_Arr)
         #return render_template('app.html', **locals())
 
         return render_template('app.html', Geo_Sym_Arr=Geo_Sym_Arr, K_Arr = K_Arr,S_on_axis=S_on_axis,Q_on_axis=Q_on_axis,A_Arr = A_Arr,a_Arr=a_Arr,D_Arr=D_Arr,d_Arr=d_Arr,
                                headings = headings, data_1 = data_1,Table_1 = [Table_1.to_html(classes='data',header="true")],Table_2 = [Table_2.to_html(classes='data',header="true")],
-                               Table_3 = [Table_3.to_html(classes='data',header="true")])
+                               Table_3 = [Table_3.to_html(classes='data',header="true")],max_list=max_list,quad_list=quad_list,hashin_list=hashin_list)
 
         '''
         #return render_template('simple.html', tables=[.to_html(classes='data')], titles=df.columns.values)
