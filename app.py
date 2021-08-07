@@ -76,7 +76,7 @@ def ADI():
         return f"<img src='data:image/png;base64,{data_1}'/>"
 #Direct to Homepage for Composite Mat Compute
 
-@app.route('/send', methods=['POST'],endpoint = 'Home page')
+@app.route('/send', methods=['GET','POST'],endpoint = 'Home page')
 def send():
     if request.method == 'POST':
 
@@ -88,13 +88,13 @@ def send():
         Stress_Res_Vec = request.form['Stress_Res_Vec']
         Mom_Res_Input = request.form['Mom_Res_Input']
 
-        print(Mom_Res_Input, file = sys.stderr)
+        #print(Mom_Res_Input, file = sys.stderr)
 
         url = "https://raw.githubusercontent.com/jasonzhou1997/Composite-Mat/main/Material%20Prop%20from%20Appendix%20C.csv"
         Material_Prop = pd.read_csv(url)
         # print(Material_Prop)
         F_M_names = pd.DataFrame(Material_Prop, columns=['Fiber Matrix'])
-        print(F_M_names,file = sys.stderr)
+        #print(F_M_names,file = sys.stderr)
 
         if Mat_name == 'Mat_1':
             Row_num = 0
@@ -140,20 +140,6 @@ def send():
             ("S_c", "[MPa]", S_c),
             ("h_o", "[m]", h_o)
         )
-        '''
-        print("Material Name is ", Material_name,",", "Fiber Matrix is", Fiber_Matrix, ", Material Property is shown below:")
-        print("Ex = ", E_x, "[Mpa]")
-        print("Ey = ", E_y, "[Mpa]")
-        print("nu/x = ",nu_over_x)
-        print("nu/y = ",nu_over_y)
-        print("Es = ", Es, "[Mpa]")
-        print("Xt = ", X_t, "[Mpa]")
-        print("Xc = ", X_c, "[Mpa]")
-        print("Yt = ", Y_t, "[Mpa]")
-        print("Yc = ", Y_c, "[Mpa]")
-        print("Sc = ", S_c, "[Mpa]")
-        print("ho (Thickness of a ply) = ", h_o, "[m]")
-        '''
         """Calculate on axis Q and S Matrix:"""
 
         m = 1 / (1 - nu_over_x * nu_over_y)
@@ -161,10 +147,10 @@ def send():
         # print("m = ",m)
         Q_on_axis = np.array([[m * E_x, m * E_x * nu_over_y, 0], [m * nu_over_x * E_y, m * E_y, 0], [0, 0, Es]])
         #return render_template('app.html', Q_on_axis=Q_on_axis)
-        print("On Axis Q Matrix [Mpa]: ",file = sys.stderr)
-        print(Q_on_axis, file = sys.stderr)
+        #print("On Axis Q Matrix [Mpa]: ",file = sys.stderr)
+        #print(Q_on_axis, file = sys.stderr)
         S_on_axis = np.linalg.inv(Q_on_axis)
-        print(S_on_axis, file = sys.stderr)
+        #print(S_on_axis, file = sys.stderr)
         #return render_template('app.html', Q_on_axis=Q_on_axis)
         #return render_template('app.html', S_on_axis=S_on_axis,Q_on_axis=Q_on_axis)
         #print("On Axis S Matrix [1/Mpa]: ")
@@ -538,7 +524,7 @@ def send():
             On_Axis_Stress_bot = np.array([Q_xx * On_Axis_Strain_bot[0] + Q_xy * On_Axis_Strain_bot[1],
                                            Q_yx * On_Axis_Strain_bot[0] + Q_yy * On_Axis_Strain_bot[1],
                                            Q_ss * On_Axis_Strain_bot[2]])
-            print("HElloooooo", On_Axis_Stress_bot)
+            #print("HElloooooo", On_Axis_Stress_bot)
             On_Axis_Stress_top = np.array([Q_xx * On_Axis_Strain_top[0] + Q_xy * On_Axis_Strain_top[1],
                                            Q_yx * On_Axis_Strain_top[0] + Q_yy * On_Axis_Strain_top[1],
                                            Q_ss * On_Axis_Strain_top[2]])
@@ -567,12 +553,6 @@ def send():
                                headings = headings, data_1 = data_1,Table_1 = [Table_1.to_html(classes='data',header="true")],Table_2 = [Table_2.to_html(classes='data',header="true")],
                                Table_3 = [Table_3.to_html(classes='data',header="true")],max_list=max_list,quad_list=quad_list,hashin_list=hashin_list)
 
-        '''
-        #return render_template('simple.html', tables=[.to_html(classes='data')], titles=df.columns.values)
-
-        # print('Curvature k1, k2, k6, [1/m]:', K_Arr)
-        # type(Geo_Str_Arr)
-        '''
 
 
 

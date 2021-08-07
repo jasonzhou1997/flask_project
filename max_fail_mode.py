@@ -92,8 +92,8 @@ def max_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_
         Minimum_R = np.amin(R_lowest_Arr)
         Index_Min_R = np.where(R_lowest_Arr == np.amin(R_lowest_Arr))[0]
 
-        print('Index_Min_R[0]=',Index_Min_R[0])
-        print('R_lowest_Arr = ', R_lowest_Arr)
+        #print('Index_Min_R[0]=',Index_Min_R[0])
+        #print('R_lowest_Arr = ', R_lowest_Arr)
 
         #print('Index_Min_R[0] =', Index_Min_R[0])
         if Index_Min_R[0] == 0:
@@ -129,12 +129,12 @@ def max_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On_
 
     # Minimum_R_N = Minimum_R * Stress_Res_Arr
 
-    print('The load vectors which would cause failures are: ')
+    #print('The load vectors which would cause failures are: ')
     Minimum_R_N = np.multiply(Stress_Res_Arr, Minimum_R)
     Minimum_R_M = np.multiply(Mom_Res_Arr, Minimum_R)
-    print(Minimum_R_N, '[N]', Minimum_R_M, '[N*M]')
+    #print(Minimum_R_N, '[N]', Minimum_R_M, '[N*M]')
 
-    print("Failure_Layer =", Failure_Layer)
+    #print("Failure_Layer =", Failure_Layer)
 
     # Minimum_R_M = Minimum_R * Mom_Res_Arr
     Layer_Arr = np.arange(1, Ply_Num + 1)

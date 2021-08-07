@@ -54,8 +54,8 @@ def quad_failure(X_t, X_c, Y_t, Y_c, S_c, Ply_Num, On_Axis_Stress_bot_Matrix, On
     Minimum_R_Quad_top = np.amin(Pos_R_top)
     Index_Min_R_Quad_top = np.where(Pos_R_top == np.amin(Pos_R_top))[0]
 
-    print('Minimum_R_Quad_bot = ', Minimum_R_Quad_bot)
-    print('Minimum_R_Quad_top = ', Minimum_R_Quad_top)
+    #print('Minimum_R_Quad_bot = ', Minimum_R_Quad_bot)
+    #print('Minimum_R_Quad_top = ', Minimum_R_Quad_top)
 
     if Minimum_R_Quad_bot < Minimum_R_Quad_top:
         R_Quad = Minimum_R_Quad_bot
