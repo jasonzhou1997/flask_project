@@ -117,29 +117,19 @@
         </div>
 
         <table>
-          {% if Table_1 != None %}
+
           <b>For Maximum Failure Criteria:</b>
-          <p>{{max_list[0]}} {{max_list[1]}},Minimum R value = {{max_list[2]}}
-<br>
-   The load vectors which would cause failures are:
-     {{max_list[3]}} [N]
-     {{max_list[4]}} [N*m]
-   </p>
+
                     {% for table in Table_1 %}
             {{ table|safe }}
 {% endfor %}
-          {% endif %}
+
         </table>
 
         <table>
           {% if Table_1 != None %}
           <b>For Quadratic Failure Criteria:</b>
-          <p>Minimum R value = {{quad_list[2]}}, Ply Number {{quad_list[1]}} in {{quad_list[0]}} would fail first
-            <br>
-   The load vectors which would cause failures are:
-     {{quad_list[3]}} [N]
-     {{quad_list[4]}} [N*m]
-          </p>
+
                     {% for table in Table_2 %}
             {{ table|safe }}
 {% endfor %}
@@ -148,13 +138,6 @@
         <table>
           {% if Table_1 != None %}
           <b>This is Table for Quadratic Failure Criteria:</b>
-                    <b>For Hashin Failure Criteria:</b>
-          <p>{{hashin_list[0]}} {{hashin_list[1]}},Minimum R value = {{hashin_list[2]}}
-            <br>
-   The load vectors which would cause failures are:
-     {{hashin_list[3]}} [N]
-     {{hashin_list[4]}} [N*m]
-          </p>
 
                     {% for table in Table_3 %}
             {{ table|safe }}
