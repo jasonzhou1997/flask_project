@@ -22,13 +22,11 @@ if __name__ == "__main__":
     app.run(debug=True)
 @app.route('/')
 def main():
-    return render_template('app.html')
-'''
-
-'''
-@app.route('/about')
-def about():
     return render_template('about.html')
+
+@app.route('/CompCalc')
+def about():
+    return render_template('app.html')
 
 @app.route('/ADI_heat',endpoint = 'Second Page')
 def main():
@@ -51,21 +49,21 @@ def ADI():
 
         X_1, Y_1, Total_Temp_Profile,Total_Temp_Profile_mid = ADI_Heat(alpha, t, nt, x, Mesh_Grid_Point, T1, T2, T3, T4, T5)
         #Plotting 3D Surface Plot
-
         #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
         fig = plt.figure(figsize=plt.figaspect(0.5))
-        ax = fig.add_subplot(1,2,1,projection ='3d')
-        surf = ax.plot_surface(X_1, Y_1, Total_Temp_Profile, cmap=cm.jet, rstride = 1, cstride = 1)
+        ax = fig.add_subplot(1, 2, 1, projection='3d')
+        surf = ax.plot_surface(X_1, Y_1, Total_Temp_Profile, cmap=cm.jet, rstride=1, cstride=1)
         ax.set_title('ADI Method to solve for the\n Temperature Distribution of a \nsquared plate')
         ax.set_xlabel('x', labelpad=20)
         ax.set_ylabel('y', labelpad=20)
         ax.set_zlabel('Temperature', labelpad=20)
         fig.colorbar(surf)
 
-        ax = fig.add_subplot(1,2,2,projection = '3d')
-        ax.plot_surface(X_1,Y_1,Total_Temp_Profile, cmap=cm.jet, rstride = 1, cstride = 1)
+        ax = fig.add_subplot(1, 2, 2, projection='3d')
+        ax.plot_surface(X_1, Y_1, Total_Temp_Profile, cmap=cm.jet, rstride=1, cstride=1)
         ax.view_init(azim=0, elev=90)
-        ax.set_title('ADI Method to solve for the \nTemperature Distribution of \na squared plate resulted temperature \nin 2D')
+        ax.set_title(
+            'ADI Method to solve for the \nTemperature Distribution of \na squared plate resulted temperature \nin 2D')
         ax.set_xlabel('x', labelpad=20)
         ax.set_ylabel('y', labelpad=20)
         ax.set_zlabel('Temperature', labelpad=20)
@@ -74,9 +72,11 @@ def ADI():
         fig.savefig(buf, format="png")
         data_1 = base64.b64encode(buf.getbuffer()).decode("ascii")
         return f"<img src='data:image/png;base64,{data_1}'/>"
+
+
 #Direct to Homepage for Composite Mat Compute
 
-@app.route('/send', methods=['GET','POST'],endpoint = 'Home page')
+@app.route('/send', methods=['GET','POST'],endpoint = 'Third page')
 def send():
     if request.method == 'POST':
 
