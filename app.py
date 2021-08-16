@@ -551,7 +551,9 @@ def send():
 
         return render_template('app.html', Geo_Sym_Arr=Geo_Sym_Arr, K_Arr = K_Arr,S_on_axis=S_on_axis,Q_on_axis=Q_on_axis,A_Arr = A_Arr,a_Arr=a_Arr,D_Arr=D_Arr,d_Arr=d_Arr,
                                headings = headings, data_1 = data_1,Table_1 = [Table_1.to_html(classes='data',header="true")],Table_2 = [Table_2.to_html(classes='data',header="true")],
-                               Table_3 = [Table_3.to_html(classes='data',header="true")],max_list=max_list,quad_list=quad_list,hashin_list=hashin_list)
+                               Table_3 = [Table_3.to_html(classes='data',header="true")],max_list_0=max_list[0],max_list_1=max_list[1],max_list_2=max_list[2],max_list_3=max_list[3],max_list_4=max_list[4],
+                               quad_list_0=quad_list[0],quad_list_1=quad_list[1],quad_list_2=quad_list[2],quad_list_3=quad_list[3],quad_list_4=quad_list[4],
+                               hashin_list_0=hashin_list[0],hashin_list_1=hashin_list[1],hashin_list_2=hashin_list[2],hashin_list_3=hashin_list[3],hashin_list_4=hashin_list[4])
 
 
 
