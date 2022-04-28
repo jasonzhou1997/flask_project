@@ -5,7 +5,9 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
+
 def ADI_Heat(alpha,t,nt,x,Mesh_Grid_Point,T1,T2,T3,T4,T5):
+  
   alpha = float(alpha)
   t = float(t)
   nt = int(nt)
