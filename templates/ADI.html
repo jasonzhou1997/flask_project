@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -8,86 +9,93 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-      />
+    />
+
     <style>
       .alert {
-      background: green;
-      padding: 1rem;
-      border-radius: 5px;
-      color: white;
-      margin: 1rem;
+        background: green;
+        padding: 1rem;
+        border-radius: 5px;
+        color: white;
+        margin: 1rem;
       }
     </style>
-    {% extends "base.html" %}
-    {% block content %}
-  </head>
-  <body>
+{% extends "base.html" %}
+
+{% block content %}
+</head>
+
+<body>
+
     <div class="container">
       <form action="/Send_1" method="POST">
-        <image src="{{ url_for('static', filename='images/Square_Plate.png')}} "width = "200" height = "200" ALIGN=”left”/>
-        <image src="{{ url_for('static', filename='images/Diffusion_of_Heat.png')}} "width = "200" height = "100"/>
-        <br>
-        <head>Hi, this is a site showing using Alternating-Direction Implicit (ADI) method to solve for 2D Diffusion of heat Equation with Dirichlet Boundary conditions of a squared plate.</head>
-        <br>
-        <label for="Number One">Thermal diffusivity [m<sup>2</sup>s<sup>-1</sup>]:</label>
+          <image src="{{ url_for('static', filename='images/Square_Plate.png')}} "width = "200" height = "200" ALIGN=”left”/>
+          <image src="{{ url_for('static', filename='images/Diffusion_of_Heat.png')}} "width = "200" height = "100"/>
+              <br>
+          <head>Hi, this is a site showing using Alternating-Direction Implicit (ADI) method to solve for 2D Diffusion of heat Equation with Dirichlet Boundary conditions of a squared plate.</head>
+              <br>
+<label for="Number One">Thermal diffusivity [m<sup>2</sup>s<sup>-1</sup>]:</label>
         <input
           type="text"
           placeholder="&#945"
           class="u-full-width"
           name="alpha"
-          />
-        <label for="Number Two">Total Time [s]:</label>
+        />
+<label for="Number Two">Total Time [s]:</label>
         <input
           type="text"
           class="u-full-width"
           name="t"
-          />
-        <label for="Number Three">Number of time steps:</label>
+        />
+<label for="Number Three">Number of time steps:</label>
         <input
           type="text"
           class="u-full-width"
           name="nt"
-          />
-        <label for="Number Four">Length the Squared Plate [m]:</label>
+        />
+<label for="Number Four">Length the Squared Plate [m]:</label>
         <input
           type="text"
           class="u-full-width"
           name="x"
-          />
-        <label for="Number Five">Mesh Grid Points:</label>
+        />
+<label for="Number Five">Mesh Grid Points:</label>
         <input
           type="text"
           placeholder="Minimum Mesh Grid Points should be 4"
           class="u-full-width"
           name="Mesh_Grid_Point"
-          />
-        <div class="form row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">T1 [&#8451]:</label>
-            <input type="text" class="form-control" name="T1">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">T2 [&#8451]:</label>
-            <input type="text" class="form-control" name="T2">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">T3 [&#8451]:</label>
-            <input type="text" class="form-control" name="T3">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">T4 [&#8451]:</label>
-            <input type="text" class="form-control" name="T4">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">T<sub>&#8734</sub> [&#8451]:</label>
-            <input type="text" class="form-control" name="T5" placeholder="Surrounding Temperature">
-          </div>
-        </div>
-        <br>
-        <input type="submit" value="Compute Temperature Distribution" id="calc_btn_1" />
-        <br />
-        {% endblock %}
-      </form>
+        />
+
+<div class="form row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">T1 [&#8451]:</label>
+      <input type="text" class="form-control" name="T1">
     </div>
-  </body>
+                  <div class="form-group col-md-6">
+      <label for="inputCity">T2 [&#8451]:</label>
+      <input type="text" class="form-control" name="T2">
+    </div>
+                  <div class="form-group col-md-6">
+      <label for="inputCity">T3 [&#8451]:</label>
+      <input type="text" class="form-control" name="T3">
+    </div>
+                  <div class="form-group col-md-6">
+      <label for="inputCity">T4 [&#8451]:</label>
+      <input type="text" class="form-control" name="T4">
+    </div>
+                  <div class="form-group col-md-6">
+      <label for="inputCity">T<sub>&#8734</sub> [&#8451]:</label>
+      <input type="text" class="form-control" name="T5" placeholder="Surrounding Temperature">
+    </div>
+
+
+  </div>
+<br>
+       <input type="submit" value="Compute Temperature Distribution" id="calc_btn" />
+        <br />
+              {% endblock %}
+                    </form>
+    </div>
+</body>
 </html>

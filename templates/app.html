@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,26 +9,32 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-      />
+    />
+
     <style>
       .alert {
-      background: green;
-      padding: 1rem;
-      border-radius: 5px;
-      color: white;
-      margin: 1rem;
+        background: green;
+        padding: 1rem;
+        border-radius: 5px;
+        color: white;
+        margin: 1rem;
       }
     </style>
     {% extends "base.html" %}
-    {% block content %}
+
+{% block content %}
+
+
   </head>
   <body>
     <div class="container">
       <h3>Composite Material Calculator</h3>
     </div>
+
     <!-- Form -->
     <div class="container">
       <form action="/send" method="POST">
+
         <label for="Operation">Material Selection</label>
         <select class="u-full-width" name="operation">
           <option value="Mat_1">T300/N5208</option>
@@ -36,50 +43,55 @@
           <option value="Mat_4">AS/H3501</option>
           <option value="Mat_5">AS4/PEEK</option>
         </select>
+
         <label for="Number One">Material Layup</label>
         <input
           type="text"
           placeholder="Enter the Material Layup"
           class="u-full-width"
           name="Mat_layup"
-          />
+        />
+
         <label for="Number Two">Is the Layup symmetric?</label>
         <input
           type="text"
           placeholder="Y/N"
           class="u-full-width"
           name="Sym_checker"
-          />
+        />
+
         <label for="Number Three">Enter the off-axis stress in [Mpa]:</label>
         <input
           type="text"
           placeholder="#/#/#"
           class="u-full-width"
           name="Off_Axis_Stress_Input"
-          />
-        <label for="Number Four">Enter the Honeycomb Thickness Z_c:</label>
+        />
+	<label for="Number Four">Enter the Honeycomb Thickness Z_c:</label>
         <input
           type="text"
           placeholder="Honeycomb Thickness"
           class="u-full-width"
           name="honey_comb"
-          />
-        <label for="Number Five">Enter the applied stress vector N1/N2/N6, in [N/m]</label>
+        />
+	<label for="Number Five">Enter the applied stress vector N1/N2/N6, in [N/m]</label>
         <input
           type="text"
           placeholder="N1/N2/N6"
           class="u-full-width"
           name="Stress_Res_Vec"
-          />
-        <label for="Number Six">Enter the applied moment resultant vector M1/M2/M6, in [N*m]:</label>
+        />
+	<label for="Number Six">Enter the applied moment resultant vector M1/M2/M6, in [N*m]:</label>
         <input
           type="text"
           placeholder="M1/M2/M6"
           class="u-full-width"
           name="Mom_Res_Input"
-          />
+        />
+
         <input type="submit" value="Calculate" id="calc_btn" />
         <br />
+
         <table>
           <tr>
             {% for header in headings %}
@@ -94,6 +106,7 @@
           </tr>
           {% endfor %}
         </table>
+
         <div class="alert">
           The number of lay up is {{Geo_Sym_Arr}}<br>
           Overall in-plane modulus [A],[MN/m]:{{A_Arr}} <br>
@@ -102,50 +115,37 @@
           Overall in-plane flexural compliance modulus [d],[m^2/M]: {{d_Arr}}<br>
           The three curvatures k<sub>i</sub>, [1/m]: {{K_Arr}} <br>
         </div>
+
+        <table>
+
+          <b>For Maximum Failure Criteria:</b>
+
+                    {% for table in Table_1 %}
+            {{ table|safe }}
+{% endfor %}
+
+        </table>
+
         <table>
           {% if Table_1 != None %}
-          <b>For Maximum Failure Criteria:</b>
-          <p>{{max_list_0}} {{max_list_1}}, Minimum R value = {{max_list_2}}
-            <br>
-            The load vectors which would cause failures are:
-            {{max_list_3}} [N]
-            {{max_list_4}} [N*m]
-          </p>
-          {% for table in Table_1 %}
-          {{ table|safe }}
-          {% endfor %}
-          {% endif %}
-        </table>
-        <table>
-          {% if Table_2 != None %}
           <b>For Quadratic Failure Criteria:</b>
-          <p>Minimum R value = {{quad_list_2}}, Ply Number {{quad_list_1}} in {{quad_list_0}} would fail first
-            <br>
-            The load vectors which would cause failures are:
-            {{quad_list_3}} [N]
-            {{quad_list_4}} [N*m]
-          </p>
-          {% for table in Table_2 %}
-          {{ table|safe }}
-          {% endfor %}
+
+                    {% for table in Table_2 %}
+            {{ table|safe }}
+{% endfor %}
           {% endif %}
         </table>
         <table>
-          {% if Table_3 != None %}
-          <b>This is Table for Hashin Failure Criteria:</b>
-          <b>For Hashin Failure Criteria:</b>
-          <p>{{hashin_list_0}} {{hashin_list_1}}, Minimum R value = {{hashin_list_2}}
-            <br>
-            The load vectors which would cause failures are:
-            {{hashin_list_3}} [N]
-            {{hashin_list_4}} [N*m]
-          </p>
-          {% for table in Table_3 %}
-          {{ table|safe }}
-          {% endfor %}
+          {% if Table_1 != None %}
+          <b>This is Table for Quadratic Failure Criteria:</b>
+
+                    {% for table in Table_3 %}
+            {{ table|safe }}
+{% endfor %}
           {% endif %}
         </table>
-        {% endblock %}
+
+{% endblock %}
       </form>
     </div>
   </body>
